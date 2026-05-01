@@ -11,11 +11,11 @@ Invoke `/resume` (or perform manually if the plugin is unavailable):
 3. Read `docs/session-log.md` (last session, next actions).
 4. Propose the next marker ID and state acceptance criteria.
 
-If `policy.yaml` has a `suite` block, also invoke `/suite-check`.
+If `policy.yaml` has a `suite` block, also invoke `/suite-check` for cross-cutting markers.
 
 ## Markers
 
-Format: `SCAF-<TRACK>-<NNNN>` (e.g. `SCAF-ARCH-0001`).
+Format: `<MARKER_PREFIX>-<TRACK>-<NNNN>` (e.g. `<MARKER_PREFIX>-ARCH-0001`).
 
 Tracks: ARCH, API, DATA, SEC, OBS, DX, FIX. Status: PLANNED | IN_PROGRESS | BLOCKED | DONE | DROPPED.
 
@@ -26,4 +26,4 @@ Every active item lives in `docs/work-index.md`. Every commit references a marke
 - **Scaffold rituals** (this plugin): `/resume`, `/decide`, `/handoff`, `/suite-check`, `/threat-model`, `/marker`, `/verify`, `/release-ready`.
 - **Engineering** (mattpocock/skills): `/grill-with-docs`, `/tdd`, `/diagnose`, `/improve-codebase-architecture`, `/zoom-out`, `/to-prd`, `/to-issues`, `/triage`.
 
-See `README.md` for full conventions, gates, lifecycle, and plugin install instructions.
+See the scaffold-template `README.md` for full conventions, gates, and lifecycle reference.

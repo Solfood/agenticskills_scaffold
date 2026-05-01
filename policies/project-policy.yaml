@@ -1,18 +1,31 @@
-project_name: "<PROJECT_NAME>"
-marker_prefix: "<MARKER_PREFIX>"
-risk_tolerance: "medium"
+project_name: "Engineering Scaffold Template"
+marker_prefix: "SCAF"
+owner: "Solfood"
+repo_url: "https://github.com/Solfood/engineering-scaffold-template"
+tech_stack: "Markdown + shell + Claude Code plugin"
+deployment_env: "Claude Code plugin (local install)"
+
+tracks:
+  - ARCH   # architecture decisions
+  - API    # API surface changes
+  - DATA   # data model and persistence
+  - SEC    # security and auth
+  - OBS    # observability and metrics
+  - DX     # developer experience and tooling
+  - FIX    # bug fixes
+
+# This repo is the governing template for the Solfood suite.
+# Consumer repos: bluray, Willowbrook, recipes-wiki.
+# It does not have peers — siblings are tracked in their own policy.yaml.
+
+risk_tolerance: "low"
 critical_assets:
-  - "user_data"
-  - "auth_tokens"
-compliance_requirements:
-  - "none"
+  - "scaffold_conventions"
+compliance_requirements: []
 blocking_severities:
   - "critical"
   - "high"
 mandatory_gates:
   - "coherence"
-  - "security"
   - "engineering_fundamentals"
   - "verification"
-  - "safety"
-  - "release_readiness"

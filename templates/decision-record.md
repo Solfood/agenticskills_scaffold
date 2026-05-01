@@ -6,6 +6,10 @@
 - Marker: <PREFIX>-<TRACK>-<NNNN>
 - Supersedes: N/A
 
+## Context
+
+<!-- The situation that prompted this decision: what was happening, what was broken or missing, what constraint or opportunity triggered the need to decide. -->
+
 ## Intake
 
 - Objective:

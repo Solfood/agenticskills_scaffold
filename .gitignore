@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+dist/
+build/
+.pytest_cache/
+
+# Node
+node_modules/
+.npm/
+
+# macOS
+.DS_Store
+.AppleDouble
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Secrets
+.env
+.env.local
+*.pem
+*.key
+
+# Generated / build output
+site/
