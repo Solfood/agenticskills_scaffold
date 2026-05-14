@@ -13,11 +13,19 @@ Format:
 A concise definition. What it IS, not what it does.
 _Avoid_: Synonyms or aliases that would create ambiguity.
 
-Example:
+EXAMPLE — replace these with your own domain terms:
 
 **Order**:
 A request from a Customer to receive goods or services, captured at submit time.
 _Avoid_: Purchase, transaction.
+
+**Customer**:
+A person or organization that places orders. Distinct from User (an authentication identity).
+_Avoid_: Client, buyer, account.
+
+**Invoice**:
+A request for payment generated after fulfillment is confirmed — not at order time.
+_Avoid_: Bill, payment request.
 -->
 
 ## Relationships

@@ -20,7 +20,7 @@ Append-only continuity log.
 ## 2026-04-30 - Session 1
 
 - Markers: `SCAF-ARCH-0001`
-- Objective: Migrate the scaffold from a CLAUDE.md-driven manual to a Claude Code skills plugin. Pilot in `bluray` next.
+- Objective: Migrate the scaffold from a CLAUDE.md-driven manual to a Claude Code skills plugin. Pilot in a consumer repo next.
 - Work completed:
   - Wrote DEC-0001 capturing the 10 design decisions from the grilling session.
   - Dogfooded `policies/project-policy.yaml` with concrete `SCAF` values.
@@ -34,6 +34,6 @@ Append-only continuity log.
 - Open issues/blockers: None at handoff.
 - Next actions:
   - Sanity-check the full plugin tree (paths, frontmatter, references).
-  - Begin the bluray pilot (PR 2): install plugin, adopt slim CLAUDE.md, exercise each skill on real work.
-  - After pilot stabilizes (~1-2 weeks): retrofit Willowbrook and recipes-wiki.
+  - Begin the pilot in a consumer repo: install plugin, adopt slim CLAUDE.md, exercise each skill on real work.
+  - After pilot stabilizes (~1-2 weeks): retrofit other consumer repos as needed.
 - References: DEC-0001; Matt Pocock's `mattpocock/skills` repo; in-conversation grill of 2026-04-30.

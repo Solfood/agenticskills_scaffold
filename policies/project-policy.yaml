@@ -1,7 +1,7 @@
 project_name: "Engineering Scaffold Template"
 marker_prefix: "SCAF"
-owner: "Solfood"
-repo_url: "https://github.com/Solfood/engineering-scaffold-template"
+owner: "<your-org>"
+repo_url: "<repo_url>"
 tech_stack: "Markdown + shell + Claude Code plugin"
 deployment_env: "Claude Code plugin (local install)"
 
@@ -14,9 +14,7 @@ tracks:
   - DX     # developer experience and tooling
   - FIX    # bug fixes
 
-# This repo is the governing template for the Solfood suite.
-# Consumer repos: bluray, Willowbrook, recipes-wiki.
-# It does not have peers — siblings are tracked in their own policy.yaml.
+# This is the scaffold template repo itself — it has no suite siblings.
 
 risk_tolerance: "low"
 critical_assets:

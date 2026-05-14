@@ -26,6 +26,3 @@ Propose the next free marker ID.
 5. **Don't write yet.**
    - This skill is read-only. The caller (typically `/decide`, `/resume`, or the user directly) writes the new entry to `docs/work-index.md` once details are filled in.
 
-## Suite-cross-cutting markers
-
-For work that spans multiple repos in a suite, use `SUITE-<TRACK>-NNNN` as the prefix. The numbering for `SUITE-*` markers is shared across all suite repos — coordinate via `/suite-check` to pick a free ID.

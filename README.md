@@ -1,6 +1,6 @@
 # Engineering Scaffold Template
 
-A Claude Code skills plugin that adds **suite-aware continuity rituals** on top of [mattpocock/skills](https://github.com/mattpocock/skills). Designed for the Solfood multi-repo suite, but works on any repo that wants marker discipline, decision records, and session continuity.
+A Claude Code skills plugin that adds **engineering continuity rituals** on top of [mattpocock/skills](https://github.com/mattpocock/skills). Gives any repo marker discipline, decision records, threat modeling, and session continuity.
 
 ## What's in here
 
@@ -16,7 +16,6 @@ This repo serves two purposes:
 | `/resume` | Start of every session. Reads policy + work-index + session-log; proposes next marker. |
 | `/decide` | Opening a non-trivial decision. Walks intake, kicks off `/grill-with-docs`, triggers `/threat-model` if risk is medium/high. |
 | `/handoff` | End of every session. Writes session-log entry; runs Engineering Fundamentals checklist before flipping work to DONE. |
-| `/suite-check` | Before non-trivial work in a multi-repo suite. Scans siblings for cross-cutting markers. |
 | `/threat-model` | Required for medium/high-risk decisions. Walks STRIDE. |
 | `/marker` | Quick proposal of the next free marker ID for a track. |
 | `/verify` | After BUILD, before HANDOFF. Runs tests, attaches evidence, gates DONE on the Engineering Fundamentals checklist. |
@@ -28,10 +27,10 @@ These layer on top of Matt Pocock's engineering skills (`/grill-with-docs`, `/td
 
 ```bash
 # 1. Clone the plugin somewhere stable
-git clone https://github.com/Solfood/engineering-scaffold-template.git ~/code/engineering-scaffold-template
+git clone https://github.com/<your-org>/engineering-scaffold-template.git ~/code/engineering-scaffold-template
 
 # 2. Register the plugin in your Claude Code settings (one of)
-#    a. Symlink: ln -s ~/code/engineering-scaffold-template ~/.claude/plugins/solfood-scaffold
+#    a. Symlink: ln -s ~/code/engineering-scaffold-template ~/.claude/plugins/engineering-scaffold
 #    b. Add to settings.json under "plugins"
 #    c. Use Claude Code's plugin marketplace UI
 
@@ -67,7 +66,6 @@ Status: `PLANNED | IN_PROGRESS | BLOCKED | DONE | DROPPED`.
 Rules:
 - Every active work item has a row in `docs/work-index.md`.
 - Every commit references a marker.
-- Multi-repo cross-cutting work uses prefix `SUITE-` (numbering shared across repos).
 
 ### Lifecycle (six stages, six gates)
 
@@ -113,7 +111,7 @@ Categories that always need `/threat-model`: auth/authz logic; cryptography and 
 | Path | Purpose | Lazy-created by |
 |---|---|---|
 | `CLAUDE.md` | Slim startup pointer | `init.sh` (or copy from `templates/CLAUDE.md.tmpl`) |
-| `policies/project-policy.yaml` | Per-repo metadata, suite siblings | `/resume` (prompts on first use) |
+| `policies/project-policy.yaml` | Per-repo metadata: marker prefix, tracks, risk tolerance, critical assets | `/resume` (prompts on first use) |
 | `CONTEXT.md` | Domain language for the repo | `/decide` + `/grill-with-docs` |
 | `docs/work-index.md` | Active work tracker | `/resume` |
 | `docs/session-log.md` | Append-only continuity log | `/resume` or `/handoff` |
@@ -125,7 +123,7 @@ The plugin owns canonical templates in its own `templates/` folder. Consumer rep
 
 ## How this differs from the old scaffold
 
-This repo replaced a ~120-line always-loaded `CLAUDE.md` with a ~25-line slim version + 8 invocable skills. See [`docs/decisions/SCAF-ARCH-0001.md`](docs/decisions/SCAF-ARCH-0001.md) for the full rationale and the 10 design decisions that shaped the migration.
+This repo replaced a ~120-line always-loaded `CLAUDE.md` with a ~25-line slim version + 7 invocable skills. See [`docs/decisions/SCAF-ARCH-0001.md`](docs/decisions/SCAF-ARCH-0001.md) for the full rationale and the 10 design decisions that shaped the migration.
 
 ## Commit hygiene
 

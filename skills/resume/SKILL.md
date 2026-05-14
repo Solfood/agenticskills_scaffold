@@ -1,6 +1,6 @@
 ---
 name: resume
-description: Start-of-session continuity ritual for the Solfood scaffold. Reads project policy, work-index, session-log, proposes the next marker, and surfaces open suite-cross-cutting work. Lazy-creates state files if missing. Use at the start of every session, or any time you need to re-anchor mid-session ("we lost the thread, /resume").
+description: Start-of-session continuity ritual. Reads project policy, work-index, session-log, and proposes the next marker. Lazy-creates state files if missing. Use at the start of every session, or any time you need to re-anchor mid-session ("we lost the thread, /resume").
 ---
 
 Run the startup protocol for this repo.
@@ -8,7 +8,7 @@ Run the startup protocol for this repo.
 ## Steps
 
 1. **Read project policy.**
-   - If `policies/project-policy.yaml` exists, read it. Note: project name, marker prefix, tracks, suite siblings (if any), risk tolerance, critical assets, mandatory gates.
+   - If `policies/project-policy.yaml` exists, read it. Note: project name, marker prefix, tracks, risk tolerance, critical assets, mandatory gates.
    - If it doesn't exist, ask the user: project name, marker prefix (2-6 uppercase letters), risk tolerance (low/medium/high). Write a fresh `policies/project-policy.yaml` from the plugin's `templates/project-policy.yaml.tmpl`. Don't block the session — get the minimum and continue.
 
 2. **Read work-index.**
@@ -19,15 +19,12 @@ Run the startup protocol for this repo.
    - If `docs/session-log.md` exists, read the most recent entry — `Next actions` is what you'll continue.
    - If missing, create from the plugin's `templates/session-log.md.tmpl`.
 
-4. **Suite check (if applicable).**
-   - If `policies/project-policy.yaml` has a non-empty `suite` block, invoke `/suite-check`. Surface any open SUITE-* markers in sibling repos that could affect today's work.
-
-5. **Propose next marker.**
+4. **Propose next marker.**
    - Scan `docs/work-index.md` for the highest existing `<PREFIX>-<TRACK>-NNNN` per track.
    - Ask the user (or infer from context) which track today's work belongs to (ARCH/API/DATA/SEC/OBS/DX/FIX, or other from `tracks` in policy.yaml).
    - Propose the next ID, zero-padded to 4 digits.
 
-6. **State acceptance criteria.**
+5. **State acceptance criteria.**
    - Confirm in plain language what "done" looks like for today's work. Don't start implementing until this is explicit.
 
 ## Tier 2 lazy behavior

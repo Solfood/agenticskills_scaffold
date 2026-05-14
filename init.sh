@@ -3,7 +3,7 @@ set -euo pipefail
 
 # init.sh — Tier 2 lazy bootstrap.
 #
-# Writes the minimum a consumer repo needs to start using the Solfood scaffold:
+# Writes the minimum a consumer repo needs to start using the engineering scaffold:
 #   - CLAUDE.md (slim startup pointer)
 #   - policies/project-policy.yaml (per-repo metadata)
 #
@@ -16,7 +16,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TARGET_DIR="${1:-$PWD}"
 
-echo "Solfood scaffold — consumer repo initializer"
+echo "Engineering scaffold — consumer repo initializer"
 echo "============================================"
 echo "Target: $TARGET_DIR"
 echo ""
@@ -59,12 +59,11 @@ echo "  wrote $TARGET_DIR/policies/project-policy.yaml"
 
 echo ""
 echo "Done. Next steps:"
-echo "  1. Make sure the Solfood scaffold plugin is registered with Claude Code."
+echo "  1. Make sure the engineering-scaffold plugin is registered with Claude Code."
 echo "     (Symlink, settings.json, or marketplace — see scaffold-template README.)"
 echo "  2. Open Claude Code in this repo and run /resume to begin your first session."
 echo "     The skill will lazy-create docs/work-index.md and docs/session-log.md."
-echo "  3. Edit policies/project-policy.yaml to add a 'suite:' block if this repo is"
-echo "     part of a multi-repo ecosystem."
+echo "  3. Review policies/project-policy.yaml and update owner, repo_url, and tracks."
 echo ""
 echo "First commit:"
 echo "  git add CLAUDE.md policies/"

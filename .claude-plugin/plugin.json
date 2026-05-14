@@ -1,11 +1,10 @@
 {
-  "name": "solfood-scaffold",
-  "description": "Suite-aware continuity rituals for the Solfood engineering scaffold. Designed to layer on top of mattpocock/skills — adds marker discipline, work-index/session-log continuity, decision records, threat models, gates, and cross-repo suite checks.",
+  "name": "engineering-scaffold",
+  "description": "Engineering continuity rituals for Claude Code projects. Layers on top of mattpocock/skills — adds marker discipline, work-index/session-log continuity, decision records, threat models, and release gates.",
   "skills": [
     "./skills/resume",
     "./skills/decide",
     "./skills/handoff",
-    "./skills/suite-check",
     "./skills/threat-model",
     "./skills/marker",
     "./skills/verify",
