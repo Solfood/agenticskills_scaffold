@@ -24,7 +24,7 @@ Append-only continuity log.
 - Work completed:
   - Wrote DEC-0001 capturing the 10 design decisions from the grilling session.
   - Dogfooded `policies/project-policy.yaml` with concrete `SCAF` values.
-  - Built the plugin skeleton: `.claude-plugin/plugin.json` + `skills/` tree with 8 SKILL.md files.
+  - Built the plugin skeleton: `.claude-plugin/plugin.json` + `skills/` tree with 7 SKILL.md files.
   - Added `templates/CONTEXT.md` (Matt-format skeleton) and template variants for consumer-repo bootstrap.
   - Slimmed `CLAUDE.md` from ~120 lines to a continuity-only stub.
   - Updated README.md to explain the new model.
