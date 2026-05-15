@@ -8,7 +8,7 @@ Walk the release-readiness checklist before shipping.
 ## Steps
 
 1. **Copy template.**
-   - Copy the plugin's `templates/release-readiness.md` to `docs/releases/RELEASE-<YYYY-MM-DD>.md` (or `RELEASE-<NNNN>.md` if you prefer numbered releases).
+   - Copy this skill's bundled `release-readiness.md` to `docs/releases/RELEASE-<YYYY-MM-DD>.md` (or `RELEASE-<NNNN>.md` if you prefer numbered releases).
    - If `docs/releases/` doesn't exist, create it.
 
 2. **Walk gates 1-6.**

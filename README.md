@@ -1,130 +1,74 @@
-# Engineering Scaffold Template
+# agenticskills_scaffold
 
-A Claude Code skills plugin that adds **engineering continuity rituals** on top of [mattpocock/skills](https://github.com/mattpocock/skills). Gives any repo marker discipline, decision records, threat modeling, and session continuity.
+A Claude Code skills plugin: **agentic engineering skills** for any repo. Continuity rituals (markers, work-index/session-log, decision records), security and release gates, an autonomous orchestration layer for unattended runs, and a hard-forked bundle of engineering and productivity skills.
 
-## What's in here
+## Model
 
-This repo serves two purposes:
-
-1. **A Claude Code plugin** (`.claude-plugin/` + `skills/` + `templates/`) — install once per machine; consumer repos invoke skills with no per-repo install.
-2. **The reference scaffold** for the conventions the skills assume (markers, work-index, session-log, decisions, gates).
+- **Skills are the interface.** Every ritual is an opt-in skill you (or an orchestrator) invoke. Nothing is always-on except the slim `CLAUDE.md`.
+- **Self-contained.** Each skill carries its own templates and supporting files. No skill auto-chains into another — a skill ends by *suggesting* the next, and you decide.
+- **Opt-in continuity.** Markers, `work-index.md`, `session-log.md`, and `DEC` records still exist as artifacts, but nothing is enforced. Skills lazy-create state files on first use.
+- **Hard fork.** The engineering/productivity skills started from [mattpocock/skills](https://github.com/mattpocock/skills) and are now owned and maintained here.
 
 ## Skills
 
+### Continuity & gates
+
 | Skill | When to use |
 |---|---|
-| `/resume` | Start of every session. Reads policy + work-index + session-log; proposes next marker. |
-| `/decide` | Opening a non-trivial decision. Walks intake, kicks off `/grill-with-docs`, triggers `/threat-model` if risk is medium/high. |
-| `/handoff` | End of every session. Writes session-log entry; runs Engineering Fundamentals checklist before flipping work to DONE. |
-| `/threat-model` | Required for medium/high-risk decisions. Walks STRIDE. |
-| `/marker` | Quick proposal of the next free marker ID for a track. |
-| `/verify` | After BUILD, before HANDOFF. Runs tests, attaches evidence, gates DONE on the Engineering Fundamentals checklist. |
-| `/release-ready` | Before any production deploy. Walks Gates 5+6. |
+| `/resume` | Start of a session. Reads policy + work-index + session-log; proposes the next marker. |
+| `/marker` | Quick next-marker-ID proposal for a track. |
+| `/decide` | Opening a non-trivial decision. Walks intake, classifies risk, writes a `DEC` record. |
+| `/threat-model` | STRIDE threat model. Recommended for medium/high-risk decisions. |
+| `/verify` | After BUILD. Runs tests, attaches evidence, runs the Engineering Fundamentals checklist. |
+| `/architecture` | Regenerates `architecture.md` from a fresh codebase exploration. |
+| `/handoff` | End of a session. Writes the session-log entry. |
+| `/release-ready` | Before a production deploy. Walks Gates 5 + 6. |
+| `/autonomous` | No-human-in-the-loop orchestration — drains the work-index queue under a bounded, risk-capped drain pass. |
 
-These layer on top of Matt Pocock's engineering skills (`/grill-with-docs`, `/tdd`, `/diagnose`, `/improve-codebase-architecture`, `/zoom-out`, `/to-prd`, `/to-issues`, `/triage`). Install both for the full experience.
+### Engineering & productivity (hard-forked)
 
-## Install (Claude Code)
+`/grill-with-docs`, `/tdd`, `/diagnose`, `/improve-codebase-architecture`, `/zoom-out`, `/prototype`, `/grill-me`, `/caveman`, `/to-prd`, `/to-issues`, `/triage`.
+
+## Install
 
 ```bash
 # 1. Clone the plugin somewhere stable
-git clone https://github.com/<your-org>/engineering-scaffold-template.git ~/code/engineering-scaffold-template
+git clone <repo_url> ~/code/agenticskills_scaffold
 
-# 2. Register the plugin in your Claude Code settings (one of)
-#    a. Symlink: ln -s ~/code/engineering-scaffold-template ~/.claude/plugins/engineering-scaffold
-#    b. Add to settings.json under "plugins"
-#    c. Use Claude Code's plugin marketplace UI
-
-# 3. Also install Matt's skills (recommended companion)
-#    See https://github.com/mattpocock/skills for install instructions
+# 2. Register it with Claude Code (symlink into ~/.claude/plugins,
+#    add to settings.json, or use the plugin marketplace UI).
 ```
 
-## Bootstrap a consumer repo
-
-The plugin works in any repo with **zero bootstrap** — invoke `/resume` and it lazily creates the state files it needs (Tier 2 model). For repos that want the full structure up front, run `init.sh`.
-
-```bash
-# In your consumer repo:
-bash <path-to-scaffold-template>/init.sh
-```
-
-`init.sh` will:
-- Prompt for project name, marker prefix, risk tolerance.
-- Write `CLAUDE.md` from the template.
-- Write `policies/project-policy.yaml` from the template.
-- (No longer writes templates or seeds docs/ — the plugin handles that on-demand.)
+Skills work in any repo with zero bootstrap — they lazy-create the state files they need. Run `/resume` to start.
 
 ## Conventions
 
 ### Markers
 
-Format: `<PREFIX>-<TRACK>-<NNNN>` (e.g. `SCAF-ARCH-0001`).
+Format: `<PREFIX>-<TRACK>-<NNNN>` (e.g. `SCAF-ARCH-0001`). Tracks: `ARCH` `API` `DATA` `SEC` `OBS` `DX` `FIX`. Status: `PLANNED | IN_PROGRESS | BLOCKED | DONE | DROPPED`. Per-repo config lives in `policies/project-policy.yaml`.
 
-Standard tracks: `ARCH` `API` `DATA` `SEC` `OBS` `DX` `FIX`. Custom tracks live in `policies/project-policy.yaml`.
+### Lifecycle
 
-Status: `PLANNED | IN_PROGRESS | BLOCKED | DONE | DROPPED`.
-
-Rules:
-- Every active work item has a row in `docs/work-index.md`.
-- Every commit references a marker.
-
-### Lifecycle (six stages, six gates)
-
-| # | Stage | Skill | Gate |
-|---|---|---|---|
-| 1 | DISCOVER | (manual / `/zoom-out`) | — |
-| 2 | DECIDE | `/decide` | Coherence (1) + Security (2, if med/high) |
-| 3 | BUILD | `/tdd` (Matt's) | Engineering Fundamentals (3) |
-| 4 | VERIFY | `/verify` | Verification (4) |
-| 5 | CONSOLIDATE | (inline) | — |
-| 6 | HANDOFF | `/handoff` + `/release-ready` if shipping | Safety (5) + Release Readiness (6) |
-
-Any failed gate blocks release until resolved or explicitly risk-accepted with rationale documented.
+A reference sequence — DISCOVER → DECIDE → BUILD → VERIFY → CONSOLIDATE → HANDOFF — with six gates (Coherence, Security, Engineering Fundamentals, Verification, Safety, Release Readiness). Interactively the lifecycle is a *guide*. Under `/autonomous` it is the orchestrator's sequence, and the gates are checked between stages.
 
 ### Risk classification
 
-- **Low** — reversible, no critical asset impact. Fast-path; Gate 2 not required; can skip DEC entirely.
-- **Medium** — cross-service impact, user data touched, non-trivial blast radius. Gate 2 (`/threat-model`) required.
-- **High** — auth/crypto/infra boundaries, regulated data, irreversible migrations. Gate 2 required, explicit approval needed.
+- **Low** — reversible, no critical-asset impact. Fast-path.
+- **Medium** — cross-service impact, user data touched. `/threat-model` recommended.
+- **High** — auth/crypto/infra boundaries, regulated data, irreversible migrations. `/threat-model` and explicit human approval.
 
-### Engineering Fundamentals (Gate 3 + 4)
+### Autonomous runs
 
-Before any work flips to `DONE`:
+`/autonomous` executes pre-specified work-index items unattended, bounded by **reversibility**: it auto-runs low-risk items, stops before irreversible steps on medium-risk, refuses high-risk, and never deploys. It must run only in a hardened VM (no production credentials, restricted egress). See `skills/autonomous/SKILL.md`.
 
-- [ ] Objective and success criteria defined before building
-- [ ] Inputs validated at all trust boundaries
-- [ ] Error paths implemented and tested, not just happy path
-- [ ] Names convey intent; control flow is easy to follow
-- [ ] Tests appropriate for risk level; evidence attached
-- [ ] Rollback or containment path exists for risky changes
-- [ ] Logs/metrics sufficient for diagnosis in production
+## Repo layout
 
-Enforced by `/verify` and `/handoff`.
+| Path | Purpose |
+|---|---|
+| `.claude-plugin/` | Plugin manifest + marketplace entry |
+| `skills/` | One folder per skill — `SKILL.md` plus its bundled templates/supporting files |
+| `policies/project-policy.yaml` | Per-repo metadata: marker prefix, tracks, risk tolerance, critical assets |
+| `docs/decisions/` | `DEC-NNNN.md` decision records |
+| `docs/work-index.md`, `docs/session-log.md` | Continuity artifacts |
 
-### Security defaults
-
-Always apply: no plaintext secrets in repo; least privilege for service accounts and tokens; explicit authz checks on sensitive operations; dependency vulnerability scanning enabled.
-
-Categories that always need `/threat-model`: auth/authz logic; cryptography and key/token handling; data export/import, backups, migrations; network perimeter changes.
-
-### Files in a consuming repo
-
-| Path | Purpose | Lazy-created by |
-|---|---|---|
-| `CLAUDE.md` | Slim startup pointer | `init.sh` (or copy from `templates/CLAUDE.md.tmpl`) |
-| `policies/project-policy.yaml` | Per-repo metadata: marker prefix, tracks, risk tolerance, critical assets | `/resume` (prompts on first use) |
-| `CONTEXT.md` | Domain language for the repo | `/decide` + `/grill-with-docs` |
-| `docs/work-index.md` | Active work tracker | `/resume` |
-| `docs/session-log.md` | Append-only continuity log | `/resume` or `/handoff` |
-| `docs/decisions/DEC-NNNN.md` | Decision records | `/decide` |
-| `docs/threat-models/TM-NNNN.md` | STRIDE threat models | `/threat-model` |
-| `docs/releases/RELEASE-*.md` | Release readiness records | `/release-ready` |
-
-The plugin owns canonical templates in its own `templates/` folder. Consumer repos **do not ship a `templates/` folder anymore** — skills copy from the plugin on demand.
-
-## How this differs from the old scaffold
-
-This repo replaced a ~120-line always-loaded `CLAUDE.md` with a ~25-line slim version + 7 invocable skills. See [`docs/decisions/SCAF-ARCH-0001.md`](docs/decisions/SCAF-ARCH-0001.md) for the full rationale and the 10 design decisions that shaped the migration.
-
-## Commit hygiene
-
-Keep: decisions, threat models, release records, architecture notes, session log. Prune: agent scratch notes, generated files, local state.
+Consumer repos additionally grow `CONTEXT.md`, `architecture.md`, `docs/threat-models/`, `docs/releases/`, and `docs/evidence/` as skills create them on demand.

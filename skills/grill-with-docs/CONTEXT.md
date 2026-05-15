@@ -64,5 +64,5 @@ Rules:
 - Show relationships when they're not obvious from the definitions.
 - Update inline when /decide or /grill-with-docs surfaces a new or conflicting term.
 
-This file is auto-managed by /decide and Matt Pocock's /grill-with-docs. You can also edit it by hand.
+This file is auto-managed by /decide and /grill-with-docs. You can also edit it by hand.
 -->

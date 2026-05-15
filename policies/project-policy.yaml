@@ -1,8 +1,8 @@
-project_name: "Engineering Scaffold Template"
+project_name: "agenticskills_scaffold"
 marker_prefix: "SCAF"
 owner: "<your-org>"
 repo_url: "<repo_url>"
-tech_stack: "Markdown + shell + Claude Code plugin"
+tech_stack: "Markdown + Claude Code skills plugin"
 deployment_env: "Claude Code plugin (local install)"
 
 tracks:
@@ -13,8 +13,6 @@ tracks:
   - OBS    # observability and metrics
   - DX     # developer experience and tooling
   - FIX    # bug fixes
-
-# This is the scaffold template repo itself — it has no suite siblings.
 
 risk_tolerance: "low"
 critical_assets:

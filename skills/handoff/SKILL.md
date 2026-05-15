@@ -1,6 +1,6 @@
 ---
 name: handoff
-description: End-of-session continuity ritual. Writes a session-log entry capturing markers worked, work completed, verification, decisions, blockers, next actions. Runs the Engineering Fundamentals checklist before allowing any work-index entry to flip to DONE. Optionally invokes /release-ready if the work is shipping. Use at the end of every working session.
+description: End-of-session continuity ritual. Writes a session-log entry capturing markers worked, work completed, verification, decisions, blockers, next actions. Runs the Engineering Fundamentals checklist as a self-check before marking a work-index entry DONE. Suggests /release-ready if the work is shipping. Use at the end of every working session.
 ---
 
 Close the session by writing a session-log entry that lets the next session pick up cleanly.
@@ -40,12 +40,15 @@ Close the session by writing a session-log entry that lets the next session pick
    - Update `Status` and `Updated` for in-progress items.
    - Add new items discovered this session.
 
-4. **If shipping: invoke `/release-ready`.**
-   Walks Gates 5 (Safety) and 6 (Release Readiness) before deployment.
-
 ## Tier 2 lazy behavior
 
-If `docs/session-log.md` doesn't exist, create from the plugin's `templates/session-log.md.tmpl` and write the first entry. Same for `docs/work-index.md`.
+If `docs/session-log.md` doesn't exist, create it with a `# Session Log` header and write the first entry inline. Same for `docs/work-index.md` (empty Active/Completed/Dropped tables). `/resume` carries bundled templates for both if you'd rather copy them.
+
+## Next
+
+This skill does not auto-chain. If the session's work is shipping to production, suggest:
+
+- `/release-ready` — walks Gates 5 (Safety) and 6 (Release Readiness) before deployment.
 
 ## Why this ritual matters
 

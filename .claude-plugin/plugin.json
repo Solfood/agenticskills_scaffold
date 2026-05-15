@@ -1,6 +1,10 @@
 {
-  "name": "engineering-scaffold",
-  "description": "Engineering continuity rituals for Claude Code projects. Layers on top of mattpocock/skills — adds marker discipline, work-index/session-log continuity, decision records, threat models, and release gates.",
+  "name": "agenticskills-scaffold",
+  "version": "1.0.0",
+  "description": "Agentic engineering skills for Claude Code. Continuity rituals (markers, work-index/session-log, decision records, threat models, release gates), an autonomous orchestration layer for unattended runs, and a hard-forked bundle of mattpocock/skills engineering and productivity skills. Skills are self-contained and opt-in.",
+  "author": {
+    "name": "Johnathan Isable"
+  },
   "skills": [
     "./skills/resume",
     "./skills/decide",
@@ -8,6 +12,19 @@
     "./skills/threat-model",
     "./skills/marker",
     "./skills/verify",
-    "./skills/release-ready"
+    "./skills/release-ready",
+    "./skills/architecture",
+    "./skills/autonomous",
+    "./skills/grill-with-docs",
+    "./skills/tdd",
+    "./skills/diagnose",
+    "./skills/zoom-out",
+    "./skills/improve-codebase-architecture",
+    "./skills/triage",
+    "./skills/to-prd",
+    "./skills/to-issues",
+    "./skills/prototype",
+    "./skills/grill-me",
+    "./skills/caveman"
   ]
 }

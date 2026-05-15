@@ -8,7 +8,7 @@ Walk a structured threat model for a change.
 ## Steps
 
 1. **Copy template.**
-   - Copy the plugin's `templates/threat-model.md` to `docs/threat-models/TM-<NNNN>.md`. Number by scanning existing TMs.
+   - Copy this skill's bundled `threat-model.md` to `docs/threat-models/TM-<NNNN>.md`. Number by scanning existing TMs.
    - If `docs/threat-models/` doesn't exist, create it.
 
 2. **Identify Assets.**
@@ -60,3 +60,10 @@ Create `docs/threat-models/` if missing. Link the TM from the parent DEC by edit
 - Low-risk changes that don't touch the categories above.
 - Pure refactors with no surface-area change.
 - Internal-only tooling with no untrusted input.
+
+## Next
+
+This skill does not auto-chain. Once the threat model is walked:
+
+- Edit the parent `docs/decisions/DEC-<NNNN>.md` to link the TM and reflect any mitigations in Risks & Mitigations.
+- `/tdd` — when ready to build, with the mitigations as additional acceptance criteria.

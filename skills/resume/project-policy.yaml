@@ -22,10 +22,7 @@ compliance_requirements: []
 blocking_severities:
   - "critical"
   - "high"
-mandatory_gates:
-  - "coherence"
-  - "security"
-  - "engineering_fundamentals"
-  - "verification"
-  - "safety"
-  - "release_readiness"
+
+# Optional knobs for /autonomous (skill defaults apply if absent):
+# autonomous_item_cap: 5
+# autonomous_circuit_breaker: 3

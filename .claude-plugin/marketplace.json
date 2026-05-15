@@ -1,0 +1,13 @@
+{
+  "name": "agenticskills-scaffold",
+  "owner": {
+    "name": "Johnathan Isable"
+  },
+  "plugins": [
+    {
+      "name": "agenticskills-scaffold",
+      "source": "./",
+      "description": "Agentic engineering skills: continuity rituals (/resume, /decide, /handoff, /threat-model, /marker, /verify, /release-ready, /architecture), an autonomous orchestration layer (/autonomous), and a hard-forked mattpocock/skills bundle (/grill-with-docs, /tdd, /diagnose, /zoom-out, /improve-codebase-architecture, /triage, /to-prd, /to-issues, /prototype, /grill-me, /caveman)."
+    }
+  ]
+}

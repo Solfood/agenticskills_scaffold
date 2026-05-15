@@ -1,6 +1,6 @@
 ---
 name: verify
-description: Run the test/verification suite for current work, attach evidence to the work-index entry, and gate progress to DONE via the Engineering Fundamentals checklist. Wraps Matt's /tdd cycle and adds the evidence-attachment ritual. Use after BUILD stage, before /handoff or /release-ready.
+description: Run the test/verification suite for current work, attach evidence to the work-index entry, and run the Engineering Fundamentals checklist before marking DONE. Wraps the /tdd cycle and adds the evidence-attachment ritual. Use after BUILD stage, before /handoff or /release-ready.
 ---
 
 Verify work and attach evidence before marking DONE.
@@ -11,7 +11,7 @@ Verify work and attach evidence before marking DONE.
    - Which work-index entry is being verified? Ask if unclear. Read the linked DEC's `Expected evidence` section to know what counts as sufficient verification.
 
 2. **Run the suite.**
-   - If you're not yet in a red-green-refactor loop and the work warrants it, invoke Matt's `/tdd`. Otherwise, run what exists:
+   - If you're not yet in a red-green-refactor loop and the work warrants it, invoke `/tdd`. Otherwise, run what exists:
      - Unit tests
      - Integration tests
      - Type check / linter
@@ -45,3 +45,10 @@ Create the evidence directory on first attachment. Don't ask permission — just
 - After every meaningful BUILD slice that changes behavior.
 - Before `/handoff` if the session's work is being marked DONE.
 - Before `/release-ready` for any shipping work.
+
+## Next
+
+This skill does not auto-chain. Once verification is green and evidence is attached:
+
+- `/handoff` — close the session and write the session-log entry.
+- `/release-ready` — if the verified work is shipping to production.

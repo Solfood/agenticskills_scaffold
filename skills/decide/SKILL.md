@@ -1,13 +1,13 @@
 ---
 name: decide
-description: Open a decision record (DEC-NNNN.md) for a non-trivial choice. Runs intake, classifies risk, triggers /grill-with-docs for design alignment, kicks off /threat-model for medium/high risk, and updates CONTEXT.md inline as new domain terms emerge. Use when about to make a design choice that's hard to reverse, surprising without context, or the result of a real trade-off.
+description: Open a decision record (DEC-NNNN.md) for a non-trivial choice. Runs intake, classifies risk, and updates CONTEXT.md as new domain terms emerge. Suggests /grill-with-docs and /threat-model as follow-ups. Use when about to make a design choice that's hard to reverse, surprising without context, or the result of a real trade-off.
 ---
 
-Walk the DECIDE stage for a non-trivial decision.
+Open and fill a decision record for a non-trivial decision.
 
 ## When to invoke
 
-Open a DEC only when **all three** are true (same filter as Matt's `/grill-with-docs`):
+Open a DEC only when **all three** are true:
 
 1. **Hard to reverse** — cost of changing your mind later is meaningful.
 2. **Surprising without context** — a future reader will wonder "why this way?".
@@ -21,27 +21,23 @@ If any one is missing, skip the DEC and just add an entry to `docs/work-index.md
    - If the user hasn't chosen, invoke `/marker` (or scan work-index inline) for the next free `<PREFIX>-<TRACK>-NNNN`. Default track for design decisions is `ARCH`.
 
 2. **Copy template.**
-   - Copy the plugin's `templates/decision-record.md` to `docs/decisions/DEC-<NNNN>.md`. Numbering: scan `docs/decisions/` for the highest existing `DEC-NNNN`, increment, zero-pad to 4 digits.
+   - Copy this skill's bundled `decision-record.md` to `docs/decisions/DEC-<NNNN>.md`. Numbering: scan `docs/decisions/` for the highest existing `DEC-NNNN`, increment, zero-pad to 4 digits.
    - If `docs/decisions/` doesn't exist, create it.
 
 3. **Fill the Intake section first.**
    - Walk the user through: Objective, In scope, Out of scope, Risk class (low/medium/high), Critical assets touched, Dependencies, Expected evidence. Do this before anything else — it forces scope clarity.
+   - Risk class is load-bearing: it drives whether a threat model is warranted, and whether `/autonomous` may execute the item unattended.
 
-4. **Trigger `/grill-with-docs`.**
-   - Once intake is filled, invoke Matt's `/grill-with-docs` to stress-test the plan against the project's domain language and existing decisions. Captured terms get written to `CONTEXT.md` inline by that skill. If `CONTEXT.md` doesn't exist, `/grill-with-docs` will create it lazily.
-
-5. **If risk is medium or high: invoke `/threat-model`.**
-   - Walk STRIDE for the change. Result lives in `docs/threat-models/TM-<NNNN>.md`, linked from the DEC.
-
-6. **Fill remaining DEC sections.**
+4. **Fill the remaining DEC sections.**
    - Options Considered, Decision, Why, Risks & Mitigations, Rollback Plan. Evidence is filled later (after VERIFY).
+   - As new domain terms surface, update `CONTEXT.md` inline (see `/grill-with-docs` for the format). Create `CONTEXT.md` lazily if it doesn't exist.
 
-7. **Update work-index.**
+5. **Update work-index.**
    - Add an entry referencing the DEC. Status starts as `PLANNED` or `IN_PROGRESS` depending on whether implementation begins immediately.
 
 ## Tier 2 lazy behavior
 
-Create `docs/decisions/`, `docs/threat-models/`, `CONTEXT.md` if missing. Don't block on bootstrapping — initialize silently and continue.
+Create `docs/decisions/`, `CONTEXT.md` if missing. Don't block on bootstrapping — initialize silently and continue.
 
 ## What to skip
 
@@ -51,3 +47,11 @@ Create `docs/decisions/`, `docs/threat-models/`, `CONTEXT.md` if missing. Don't 
 - Anything where the answer is obvious from existing code
 
 A work-index entry is enough for those.
+
+## Next
+
+This skill does not auto-chain. Once the DEC is drafted, suggest to the user:
+
+- `/grill-with-docs` — stress-test the plan against the project's domain language and existing decisions. Recommended for any DEC.
+- `/threat-model` — **strongly recommended if Risk class is medium or high.** Walks STRIDE; the result links back into this DEC.
+- `/tdd` — when ready to build.
