@@ -20,6 +20,7 @@
     "./skills/diagnose",
     "./skills/zoom-out",
     "./skills/improve-codebase-architecture",
+    "./skills/setup-issues",
     "./skills/triage",
     "./skills/to-prd",
     "./skills/to-issues",

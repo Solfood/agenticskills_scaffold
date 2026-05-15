@@ -27,7 +27,7 @@ A Claude Code skills plugin: **agentic engineering skills** for any repo. Contin
 
 ### Engineering & productivity (hard-forked)
 
-`/grill-with-docs`, `/tdd`, `/diagnose`, `/improve-codebase-architecture`, `/zoom-out`, `/prototype`, `/grill-me`, `/caveman`, `/to-prd`, `/to-issues`, `/triage`.
+`/grill-with-docs`, `/tdd`, `/diagnose`, `/improve-codebase-architecture`, `/zoom-out`, `/prototype`, `/grill-me`, `/caveman`, `/to-prd`, `/to-issues`, `/setup-issues`, `/triage`.
 
 ## Install
 
