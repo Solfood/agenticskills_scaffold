@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# SAMPLE Stop hook for agenticskills_scaffold /autonomous.
+# SAMPLE Stop hook for agenticskills-scaffold /autonomous.
 #
 # Backstop invariant: during an autonomous run, no work-index item may be
 # marked DONE without verification evidence in docs/evidence/<marker>/.

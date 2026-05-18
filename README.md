@@ -1,4 +1,4 @@
-# agenticskills_scaffold
+# agenticskills-scaffold
 
 A Claude Code skills plugin: **agentic engineering skills** for any repo. Continuity rituals (markers, work-index/session-log, decision records), security and release gates, an autonomous orchestration layer for unattended runs, and a hard-forked bundle of engineering and productivity skills.
 
