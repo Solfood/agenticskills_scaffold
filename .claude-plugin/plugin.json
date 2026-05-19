@@ -26,6 +26,7 @@
     "./skills/to-issues",
     "./skills/prototype",
     "./skills/grill-me",
-    "./skills/caveman"
+    "./skills/caveman",
+    "./skills/document"
   ]
 }
